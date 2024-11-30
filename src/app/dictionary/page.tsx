@@ -1,9 +1,8 @@
-import { bigWords, filteredWords, list } from "@/data/all-words";
-import { readDictFile } from "@/utils/files/read-file";
-import { writeListToJsFile } from "@/utils/files/write-file";
-import { getValidCombinations } from "@/utils/wotds/find-words-in-word";
-
 // let url = "https://www.wikidata.org/w/api.php?";
+
+import { wordsFromWords } from "@/data/words-from-words";
+import { writeData, writeListToJsFile2 } from "@/utils/files/write-file";
+import { need } from "../../../origin-words";
 
 // const fetchWord = async (word: string) => {
 //     const params: { [key: string]: string } = {
@@ -40,49 +39,20 @@ import { getValidCombinations } from "@/utils/wotds/find-words-in-word";
 //     return acc
 // }, {} as Record<string, number>)
 
-
-// const getWordInWord = (words: string[]) => 
-
-const getAllData = () => {
-    const result: Record<string, string[]> = {}
-
-    for (const bw of bigWords) {
-        result[bw] = getValidCombinations(bw, filteredWords)
-        console.log(bw, result[bw].length)
-    }
-
-    return result;
-}
-
+// const getWordInWord = (words: string[]) =>
 
 export default async function Dictionary() {
-//   const list = readDictFile()
-//   writeListToJsFile(list)
-// const lengths = getWordLength(list)
-//   console.log({lengths})
+  // const words = wordsFromWords.map((item) => item.origin);
+  // writeListToJsFile2(words, "origin-words.ts");
 
-// const longList = list.filter(item => item.length >15).sort(() => 0.5 - Math.random())
-// console.log({longList}, longList.length)
-// const words =  getValidCombinations('звукоулавливатель', list);
-// console.log(words)
+  // writeData();
+  const response = await fetch("http://localhost:3000/api/level/5");
+  const data = await response.json();
+  console.log(data);
 
-// console.log('list.length', list.length, '  /' )
-// console.log('list.length15', list.filter(item => item.length >15).length, '  /' )
-// console.log('bigWords.length', bigWords.length, '  /' )
-// console.log('filteredWords.length', filteredWords.length, '  /' )
-console.log('start')
-const data = getAllData()
-console.log({data} )
-console.log('end')
-
-
-
-
-//   получившийся результат проверяем по массиву реально существующих 
-
-    return (
-        <div>
-            <h1>Dictionary</h1>
-        </div>
-    );
+  return (
+    <div>
+      <h1>Dictionary</h1>
+    </div>
+  );
 }

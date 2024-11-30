@@ -1,4 +1,4 @@
-export const list = [
+export const allWords = [
   "абажур",
   "абажурчик",
   "абаз",
@@ -51299,8 +51299,5 @@ export const list = [
   "ящичек",
   "ящичник",
   "ящур",
-  "ящурка"
+  "ящурка",
 ];
-
-export const bigWords = list.filter((item) => item.length > 15  && !item.includes('-'))
-export const filteredWords = list.filter((item) => item.length > 3 && !item.includes('-'))
